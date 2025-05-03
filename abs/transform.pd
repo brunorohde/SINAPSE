@@ -1,0 +1,115 @@
+#N canvas 499 110 801 687 12;
+#X obj 288 50 inlet GEMHEAD;
+#X obj 288 617 outlet GEMHEAD;
+#X floatatom 127 76 5 0 0 1 SCALE \$0-scale_gui_set \$0-scale_gui 10
+;
+#X obj 587 50 inlet CONTROL;
+#N canvas 621 166 764 497 CONTROL 0;
+#X msg 540 228 reset;
+#X obj 540 207 r \$0-reset_gui;
+#X obj 62 43 inlet;
+#X obj 417 249 memo \$0-memo 14 \$1;
+#X obj 62 160 param \$0-scale \$0-memo 0 1;
+#X obj 62 181 param \$0-scaleX \$0-memo 1 1;
+#X obj 62 202 param \$0-scaleY \$0-memo 2 1;
+#X obj 62 223 param \$0-scaleZ \$0-memo 3 1;
+#X obj 62 244 param \$0-rotateX \$0-memo 4 0;
+#X obj 62 286 param \$0-rotateZ \$0-memo 6 0;
+#X obj 62 265 param \$0-rotateY \$0-memo 5 0;
+#X obj 62 307 param \$0-translateX \$0-memo 7 0;
+#X obj 62 328 param \$0-translateY \$0-memo 8 0;
+#X obj 62 349 param \$0-translateZ \$0-memo 9 0;
+#X obj 62 370 param \$0-colorR \$0-memo 10 1;
+#X obj 62 391 param \$0-colorG \$0-memo 11 1;
+#X obj 62 412 param \$0-colorB \$0-memo 12 1;
+#X obj 62 84 route scale scaleX scaleY scaleZ rotateX rotateY rotateZ
+translateX translateY translateZ colorR colorG colorB;
+#X obj 594 115 s \$0-memo_slew;
+#X obj 540 84 route reset slew;
+#X connect 0 0 3 1;
+#X connect 1 0 0 0;
+#X connect 2 0 17 0;
+#X connect 17 0 4 0;
+#X connect 17 1 5 0;
+#X connect 17 2 6 0;
+#X connect 17 3 7 0;
+#X connect 17 4 8 0;
+#X connect 17 5 10 0;
+#X connect 17 6 9 0;
+#X connect 17 7 11 0;
+#X connect 17 8 12 0;
+#X connect 17 9 13 0;
+#X connect 17 10 14 0;
+#X connect 17 11 15 0;
+#X connect 17 12 16 0;
+#X connect 17 13 19 0;
+#X connect 19 0 0 0;
+#X connect 19 1 18 0;
+#X restore 587 81 pd CONTROL;
+#X obj 288 172 scale 1;
+#X obj 288 264 scaleXYZ 1 1 1;
+#X obj 288 356 rotateXYZ 0 0 0;
+#X obj 288 448 translateXYZ 0 0 0;
+#X obj 311 151 r \$0-scale;
+#X obj 319 243 r \$0-scaleX;
+#X obj 401 243 r \$0-scaleY;
+#X obj 483 243 r \$0-scaleZ;
+#X obj 322 335 r \$0-rotateX;
+#X obj 411 335 r \$0-rotateY;
+#X obj 500 335 r \$0-rotateZ;
+#X obj 329 427 r \$0-translateX;
+#X obj 439 427 r \$0-translateY;
+#X obj 549 427 r \$0-translateZ;
+#X obj 315 519 r \$0-colorR;
+#X obj 397 519 r \$0-colorG;
+#X obj 479 519 r \$0-colorB;
+#X floatatom 127 139 5 0 0 1 SCALE_XYZ \$0-scaleZ_gui_set \$0-scaleZ_gui
+10;
+#X floatatom 61 139 5 0 0 1 - \$0-scaleX_gui_set \$0-scaleX_gui 10
+;
+#X floatatom 94 139 5 0 0 1 - \$0-scaleY_gui_set \$0-scaleY_gui 10
+;
+#X floatatom 127 118 5 0 0 1 ROTATE_XYZ \$0-rotateZ_gui_set \$0-rotateZ_gui
+10;
+#X floatatom 61 118 5 0 0 1 - \$0-rotateX_gui_set \$0-rotateX_gui 10
+;
+#X floatatom 94 118 5 0 0 1 - \$0-rotateY_gui_set \$0-rotateY_gui 10
+;
+#X floatatom 127 97 5 0 0 1 TRANSL_XYZ \$0-translateZ_gui_set \$0-translateZ_gui
+10;
+#X floatatom 61 97 5 0 0 1 - \$0-translateX_gui_set \$0-translateX_gui
+10;
+#X floatatom 94 97 5 0 0 1 - \$0-translateY_gui_set \$0-translateY_gui
+10;
+#X floatatom 61 160 5 0 0 1 - \$0-colorR_gui_set \$0-colorR_gui 10
+;
+#X floatatom 94 160 5 0 0 1 - \$0-colorG_gui_set \$0-colorG_gui 10
+;
+#X floatatom 127 160 5 0 0 1 COLOR_RGB \$0-colorB_gui_set \$0-colorB_gui
+10;
+#X obj 206 79 bng 10 250 50 0 \$0-reset_gui \$0-reset_gui_set empty
+17 7 0 10 #000000 #ffffff #000000;
+#X obj 288 540 colorRGB 1 1 1 1;
+#X obj 308 111 separator;
+#X connect 0 0 5 0;
+#X connect 3 0 4 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 35 0;
+#X connect 9 0 5 1;
+#X connect 10 0 6 1;
+#X connect 11 0 6 2;
+#X connect 12 0 6 3;
+#X connect 13 0 7 1;
+#X connect 14 0 7 2;
+#X connect 15 0 7 3;
+#X connect 16 0 8 1;
+#X connect 17 0 8 2;
+#X connect 18 0 8 3;
+#X connect 19 0 35 1;
+#X connect 20 0 35 2;
+#X connect 21 0 35 3;
+#X connect 35 0 1 0;
+#X connect 36 0 5 0;
+#X coords 0 -1 1 1 177 140 1 50 50;

@@ -1,0 +1,28 @@
+#N canvas 291 297 1212 305 12;
+#X obj 401 50 inlet GEMHEAD;
+#X obj 769 230 outlet SIZE+TEXTURE;
+#X obj 401 230 outlet GEMHEAD;
+#X obj 1041 50 inlet CONTROL;
+#X obj 884 123 r \$0-reset_gui;
+#X msg 737 102 dimen \$1 \$2;
+#X obj 737 50 inlet SIZE+TEXTURE;
+#X obj 737 81 route dimen;
+#X obj 737 123 t a a;
+#X obj 1041 71 route bang;
+#X obj 1041 92 bang;
+#X obj 314 57 bng 10 250 50 0 \$0-reset_gui \$0-reset_gui_set empty
+17 7 0 10 #000000 #ffffff #000000;
+#X obj 401 143 shader shaders/bicubic_interpolation;
+#X connect 0 0 12 0;
+#X connect 3 0 9 0;
+#X connect 4 0 12 2;
+#X connect 5 0 8 0;
+#X connect 6 0 7 0;
+#X connect 7 0 5 0;
+#X connect 7 1 12 1;
+#X connect 8 0 12 1;
+#X connect 8 1 1 0;
+#X connect 9 0 10 0;
+#X connect 10 0 12 2;
+#X connect 12 0 2 0;
+#X coords 0 -1 1 1 285 25 1 50 50;

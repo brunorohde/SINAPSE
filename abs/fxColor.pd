@@ -1,0 +1,99 @@
+#N canvas 896 45 1221 321 12;
+#X obj 85 139 hsl 128 10 0 5 0 0 \$0-contrast_gui \$0-contrast_gui_set
+empty -2 -8 0 10 #000000 #ffffff #000000 0 1;
+#X msg 933 153 contrast \$1;
+#X obj 85 118 hsl 128 10 0 5 0 0 \$0-saturation_gui \$0-saturation_gui_set
+empty -2 -8 0 10 #ffe3c6 #000000 #000000 0 1;
+#X msg 803 153 saturation \$1;
+#X obj 85 97 hsl 128 10 0 5 0 0 \$0-brightness_gui \$0-brightness_gui_set
+empty -2 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X msg 673 153 brightness \$1;
+#X obj 85 76 hsl 128 10 0 1 0 0 \$0-hue_gui \$0-hue_gui_set empty -2
+-8 0 10 #e3c6ff #000000 #000000 0 1;
+#X msg 593 153 hue \$1;
+#X obj 421 50 inlet GEMHEAD;
+#X obj 531 50 inlet SIZE+TEXTURE;
+#X obj 531 260 outlet SIZE+TEXTURE;
+#X obj 421 260 outlet GEMHEAD;
+#X obj 593 132 r \$0-hue;
+#X obj 673 132 r \$0-brightness;
+#X obj 803 132 r \$0-saturation;
+#X obj 933 132 r \$0-contrast;
+#X floatatom 226 73 5 0 0 1 HUE \$0-hue_gui_set \$0-hue_gui 10;
+#X floatatom 226 94 5 0 0 1 BRIGHTNESS \$0-brightness_gui_set \$0-brightness_gui
+10;
+#X floatatom 226 115 5 0 0 1 SATURATION \$0-saturation_gui_set \$0-saturation_gui
+10;
+#X floatatom 226 136 5 0 0 1 CONTRAST \$0-contrast_gui_set \$0-contrast_gui
+10;
+#N canvas 695 325 787 330 CONTROL 0;
+#X obj 83 54 inlet CONTROL;
+#X obj 83 136 param \$0-hue \$0-memo 0 0;
+#X obj 83 157 param \$0-brightness \$0-memo 1 1;
+#X obj 83 178 param \$0-saturation \$0-memo 2 1;
+#X obj 83 199 param \$0-contrast \$0-memo 3 1;
+#X obj 448 230 memo \$0-memo 4 \$1;
+#X msg 564 188 reset;
+#X msg 564 209 dump;
+#X obj 592 126 s \$0-memo_slew;
+#X obj 448 95 route preset dump reset slew;
+#X obj 83 220 param \$0-invert \$0-memo 4 0;
+#X obj 83 95 route hue brightness saturation contrast invert;
+#X obj 564 167 r \$0-reset_gui;
+#X connect 0 0 11 0;
+#X connect 6 0 5 1;
+#X connect 7 0 5 1;
+#X connect 9 0 5 0;
+#X connect 9 1 7 0;
+#X connect 9 2 6 0;
+#X connect 9 3 8 0;
+#X connect 11 0 1 0;
+#X connect 11 1 2 0;
+#X connect 11 2 3 0;
+#X connect 11 3 4 0;
+#X connect 11 4 10 0;
+#X connect 11 5 9 0;
+#X connect 12 0 6 0;
+#X restore 1052 85 pd CONTROL;
+#X obj 61 76 bng 10 250 50 0 \$0-hue_reset \$0-hue_reset_set empty
+17 7 0 10 #000000 #ffffff #000000;
+#X obj 61 97 bng 10 250 50 0 \$0-brightness_reset \$0-brightness_reset_set
+empty 17 7 0 10 #000000 #ffffff #000000;
+#X obj 61 118 bng 10 250 50 0 \$0-saturation_reset \$0-saturation_reset_set
+empty 17 7 0 10 #000000 #ffffff #000000;
+#X obj 61 139 bng 10 250 50 0 \$0-contrast_reset \$0-contrast_reset_set
+empty 17 7 0 10 #000000 #ffffff #000000;
+#X obj 1052 50 inlet CONTROL;
+#X obj 314 75 bng 10 250 50 0 \$0-reset_gui \$0-reset_gui_set empty
+17 7 0 10 #000000 #ffffff #000000;
+#X obj 421 174 shader shaders/color;
+#X msg 1052 153 invert \$1;
+#X obj 1052 132 r \$0-invert;
+#X obj 85 160 hsl 128 10 0 1 0 0 \$0-invert_gui \$0-invert_gui_set
+empty -2 -8 0 10 #bbbbbb #000000 #000000 0 1;
+#X floatatom 226 157 5 0 0 1 INVERT \$0-invert_gui_set \$0-invert_gui
+10;
+#X obj 61 160 bng 10 250 50 0 \$0-invert_reset \$0-invert_reset_set
+empty 17 7 0 10 #000000 #ffffff #000000;
+#X obj 558 205 s \$0-memo_load;
+#X text 669 205 ATUALIZA PARÂMETROS QUANDO (RE)CARREGA SHADERS;
+#X obj 558 91 r resetShaders;
+#X text 668 91 RECARREGA SHADERS GLOBALMENTE;
+#X connect 1 0 27 2;
+#X connect 3 0 27 2;
+#X connect 5 0 27 2;
+#X connect 7 0 27 2;
+#X connect 8 0 27 0;
+#X connect 9 0 27 1;
+#X connect 12 0 7 0;
+#X connect 13 0 5 0;
+#X connect 14 0 3 0;
+#X connect 15 0 1 0;
+#X connect 25 0 20 0;
+#X connect 27 0 11 0;
+#X connect 27 1 10 0;
+#X connect 27 2 33 0;
+#X connect 28 0 27 2;
+#X connect 29 0 28 0;
+#X connect 35 0 27 2;
+#X coords 0 -1 1 1 285 134 1 50 50;

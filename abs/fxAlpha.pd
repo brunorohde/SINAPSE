@@ -1,0 +1,147 @@
+#N canvas 318 200 1207 454 12;
+#X obj 85 118 hsl 128 10 0 1 0 0 \$0-lightMin_gui \$0-lightMin_gui_set
+empty -2 -8 0 10 #606060 #ffffff #000000 0 1;
+#X obj 85 97 hsl 128 10 0 1 0 0 \$0-lightMax_gui \$0-lightMax_gui_set
+empty -2 -8 0 10 #dfdfdf #000000 #000000 0 1;
+#X obj 85 76 hsl 128 10 0 1 0 0 \$0-alpha_gui \$0-alpha_gui_set empty
+-2 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 411 50 inlet GEMHEAD;
+#X obj 521 50 inlet SIZE+TEXTURE;
+#X obj 583 372 outlet SIZE+TEXTURE;
+#X obj 411 372 outlet GEMHEAD;
+#X floatatom 226 74 5 0 0 1 ALPHA \$0-alpha_gui_set \$0-alpha_gui 10
+;
+#X floatatom 226 95 5 0 0 1 LIGHT_MAX \$0-lightMax_gui_set \$0-lightMax_gui
+10;
+#X floatatom 226 116 5 0 0 1 LIGHT_MIN \$0-lightMin_gui_set \$0-lightMin_gui
+10;
+#N canvas 420 133 957 420 CONTROL 0;
+#X obj 83 54 inlet CONTROL;
+#X msg 754 187 reset;
+#X obj 754 166 r \$0-reset_gui;
+#X obj 83 167 param \$0-lightMax \$0-memo 1 1;
+#X obj 83 229 param \$0-chromaMax \$0-memo 3 1;
+#X obj 83 136 param \$0-alpha \$0-memo 0 1;
+#X obj 638 229 memo \$0-memo 8 \$1;
+#X obj 83 198 param \$0-lightMin \$0-memo 2 0;
+#X obj 83 291 param \$0-keyRed \$0-memo 5 0;
+#X obj 83 322 param \$0-keyGreen \$0-memo 6 0;
+#X obj 83 353 param \$0-keyBlue \$0-memo 7 0;
+#X obj 83 95 route alpha lightMax lightMin chromaMax chromaMin keyRed
+keyGreen keyBlue, f 73;
+#X msg 754 208 dump;
+#X obj 83 260 param \$0-chromaMin \$0-memo 4 1;
+#X obj 782 126 s \$0-memo_slew;
+#X obj 638 95 route preset dump reset slew;
+#X connect 0 0 11 0;
+#X connect 1 0 6 1;
+#X connect 2 0 1 0;
+#X connect 11 0 5 0;
+#X connect 11 1 3 0;
+#X connect 11 2 7 0;
+#X connect 11 3 4 0;
+#X connect 11 4 13 0;
+#X connect 11 5 8 0;
+#X connect 11 6 9 0;
+#X connect 11 7 10 0;
+#X connect 11 8 15 0;
+#X connect 12 0 6 1;
+#X connect 15 0 6 0;
+#X connect 15 1 12 0;
+#X connect 15 2 1 0;
+#X connect 15 3 14 0;
+#X restore 1017 75 pd CONTROL;
+#X obj 61 76 bng 10 250 50 0 \$0-alpha_reset \$0-alpha_reset_set empty
+17 7 0 10 #000000 #ffffff #000000;
+#X obj 61 97 bng 10 250 50 0 \$0-lightMax_reset \$0-lightMax_reset_set
+empty 17 7 0 10 #000000 #ffffff #000000;
+#X obj 61 118 bng 10 250 50 0 \$0-lightMin_reset \$0-lightMin_reset_set
+empty 17 7 0 10 #000000 #ffffff #000000;
+#X obj 1017 44 inlet CONTROL;
+#X obj 314 76 bng 10 250 50 0 \$0-reset_gui \$0-reset_gui_set empty
+17 7 0 10 #000000 #ffffff #000000;
+#X obj 85 233 hsl 128 10 0 1 0 0 \$0-keyBlue_gui \$0-keyBlue_gui_set
+empty -2 -8 0 10 #0400ff #000000 #000000 0 1;
+#X obj 85 212 hsl 128 10 0 1 0 0 \$0-keyGreen_gui \$0-keyGreen_gui_set
+empty -2 -8 0 10 #00ff04 #000000 #000000 0 1;
+#X obj 85 191 hsl 128 10 0 1 0 0 \$0-keyRed_gui \$0-keyRed_gui_set
+empty -2 -8 0 10 #ff0400 #000000 #000000 0 1;
+#X floatatom 226 189 5 0 0 1 KEY_RED \$0-keyRed_gui_set \$0-keyRed_gui
+10;
+#X floatatom 226 210 5 0 0 1 KEY_GREEN \$0-keyGreen_gui_set \$0-keyGreen_gui
+10;
+#X floatatom 226 231 5 0 0 1 KEY_BLUE \$0-keyBlue_gui_set \$0-keyBlue_gui
+10;
+#X obj 61 191 bng 10 250 50 0 \$0-keyRed_reset \$0-keyRed_reset_set
+empty 17 7 0 10 #000000 #ffffff #000000;
+#X obj 61 212 bng 10 250 50 0 \$0-keyGreen_reset \$0-keyGreen_reset_set
+empty 17 7 0 10 #000000 #ffffff #000000;
+#X obj 61 233 bng 10 250 50 0 \$0-keyBlue_reset \$0-keyBlue_reset_set
+empty 17 7 0 10 #000000 #ffffff #000000;
+#X obj 85 170 hsl 128 10 0 1 0 0 \$0-chromaMin_gui \$0-chromaMin_gui_set
+empty -2 -8 0 10 #606060 #ffffff #000000 0 1;
+#X obj 85 149 hsl 128 10 0 1 0 0 \$0-chromaMax_gui \$0-chromaMax_gui_set
+empty -2 -8 0 10 #dfdfdf #000000 #000000 0 1;
+#X floatatom 226 147 5 0 0 1 CHROMA_MAX \$0-chromaMax_gui_set \$0-chromaMax_gui
+10;
+#X floatatom 226 168 5 0 0 1 CHROMA_MIN \$0-chromaMin_gui_set \$0-chromaMin_gui
+10;
+#X obj 61 149 bng 10 250 50 0 \$0-chromaMax_reset \$0-chromaMax_reset_set
+empty 17 7 0 10 #000000 #dfdfdf #000000;
+#X obj 61 170 bng 10 250 50 0 \$0-chromaMin_reset \$0-chromaMin_reset_set
+empty 17 7 0 10 #000000 #ffffff #000000;
+#X msg 830 241 keyRange \$1 \$2;
+#X msg 679 241 lightRange \$1 \$2;
+#X obj 583 220 r \$0-alpha;
+#X obj 679 157 r \$0-lightMax;
+#X obj 700 178 r \$0-lightMin;
+#X obj 700 199 t b f;
+#X obj 679 220 pack f f;
+#X obj 851 199 t b f;
+#X obj 830 220 pack f f;
+#X obj 830 157 r \$0-chromaMax;
+#X obj 851 178 r \$0-chromaMin;
+#X obj 995 178 t b f;
+#X obj 968 136 r \$0-keyRed;
+#X obj 995 157 r \$0-keyGreen;
+#X obj 1035 199 t b f;
+#X obj 1035 178 r \$0-keyBlue;
+#X obj 968 220 pack f f f;
+#X msg 583 241 alpha \$1;
+#X msg 968 241 keyRGBA \$1 \$2 \$3 1;
+#X obj 411 261 shader shaders/alpha;
+#X obj 548 292 s \$0-memo_load;
+#X text 659 292 ATUALIZA PARÂMETROS QUANDO (RE)CARREGA SHADERS;
+#X obj 548 110 r resetShaders;
+#X text 658 110 RECARREGA SHADERS GLOBALMENTE;
+#X connect 3 0 50 0;
+#X connect 4 0 50 1;
+#X connect 14 0 10 0;
+#X connect 31 0 50 2;
+#X connect 32 0 50 2;
+#X connect 33 0 48 0;
+#X connect 34 0 37 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 36 1 37 1;
+#X connect 37 0 32 0;
+#X connect 38 0 39 0;
+#X connect 38 1 39 1;
+#X connect 39 0 31 0;
+#X connect 40 0 39 0;
+#X connect 41 0 38 0;
+#X connect 42 0 47 0;
+#X connect 42 1 47 1;
+#X connect 43 0 47 0;
+#X connect 44 0 42 0;
+#X connect 45 0 47 0;
+#X connect 45 1 47 2;
+#X connect 46 0 45 0;
+#X connect 47 0 49 0;
+#X connect 48 0 50 2;
+#X connect 49 0 50 2;
+#X connect 50 0 6 0;
+#X connect 50 1 5 0;
+#X connect 50 2 51 0;
+#X connect 53 0 50 2;
+#X coords 0 -1 1 1 285 205 1 50 50;
